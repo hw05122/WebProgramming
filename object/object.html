@@ -1,0 +1,73 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="utf-8">
+    <title>Object</title>
+</head>
+
+<body>
+    <p>Example</p>
+</body>
+
+<script>
+    // 속성은 생성자 함수에 정의
+    function Person(name, age) {
+        this.name = name;
+        this.age = age;
+        // this.greeting = function () {
+        //     alert('Hi ' + this.name + '.');
+        // };
+    }
+        // 메서드는 프로토타입에 정의
+    Person.prototype.greeting = function(){
+        alert(this.name+", "+this.age);
+    }
+
+    var person1 = new Person('park',23);
+
+
+    /*
+        {
+            name: 'park'
+            age: 23
+            greeting: function(){
+                alert('Hi ' + this.name + '.');
+            }
+        }
+    */
+
+    //var person1 = new Person('park');
+    /*
+        {
+            name: 'park'
+            greeting: function(){
+                alert('Hi ' + this.name + '.');
+            }
+        }
+    */
+    //var person2 = new Person('lee');
+        /*
+        {
+            name: 'lee'
+            greeting: function(){
+                alert('Hi ' + this.name + '.');
+            }
+        }
+    */
+
+    // var person = {
+    //     name: ['Park', 'Smith'],
+    //     age: 32,
+    //     gender: 'F',
+    //     interests: ['music', 'skiing'],
+    //     bio: function () {
+    //         alert(this.name[0]+' is '+this.age+' years old');
+    //     },
+    //     greeting: function () {
+    //         alert('Hi ' + this.name[0] + '.');
+    //     }
+    // }
+</script>
+
+</html>
