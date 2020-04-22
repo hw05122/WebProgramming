@@ -1,0 +1,50 @@
+<!DOCTYPE html>
+<html>
+
+<head>
+    <meta charset="urf-8">
+    <title>Promise All</title>
+</head>
+
+<body>
+    <script>
+        function fetchAndDecode(url, type) {
+            return fetch(url).then(response => {
+                if (type === 'blob') {
+                    return response.blob();
+                } else if (type === 'text') {
+                    return response.text();
+                }
+            })
+                .catch(e => {
+                    console.log('There has been a problem with your fetch operation');
+                });
+        }
+
+        let spring = fetchAndDecode('images/spring.jpg', 'blob');
+        let mountain = fetchAndDecode('images/mountain.jpg', 'blob');
+        let description = fetchAndDecode('texts/description.txt', 'text');
+
+        Promise.all([spring, mountain, description]).then(values => {
+            console.log(values);
+
+            let objectURL1 = URL.createObjectURL(values[0]);
+            let objectURL2 = URL.createObjectURL(values[1]);
+            let descText = values[2];
+
+            let image1 = document.createElement('img');
+            let image2 = document.createElement('img');
+            image1.src = objectURL1;
+            image2.src = objectURL2;
+            document.body.appendChild(image1);
+            document.body.appendChild(image2);
+
+            let para = document.createElement('p');
+            para.textContent = descText;
+            document.body.appendChild(para);
+        });
+
+    </script>
+</body>
+
+</html>
